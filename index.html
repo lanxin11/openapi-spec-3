@@ -32,14 +32,26 @@
     <script src="https://git.zias.io/pages/TechPubs/lib-swagger/browser.js"></script>
     <script src="https://www.zuora.com/wp-content/themes/zuora/js/redocpro-standalone.min.js"></script>
     <script>
-      RedocPro.init(
-        'bundled/openapi.yaml',
-        {
-          "unstable_ignoreMimeParameters": true,
-          "lazyRendering": true
-        },
-        document.querySelector('#redoc_container')
-      );
+      const source = new SwaggerSource(".");
+      source
+        .merge()
+        .then(merged => {
+          const message = "This page is a Zuora internal draft and cannot be viewed by customers";
+          document.getElementById("disclaimer").innerHTML = `<p>${message}</p>`;
+          RedocPro.init(
+            merged.spec,
+            {
+              "unstable_ignoreMimeParameters": true,
+              "layout": {
+                "scope": "section"
+              }
+            },
+            document.querySelector("#redoc_container")
+          );
+        })
+        .catch(err => {
+          console.error(`Error: ${err.message}`);
+        });
     </script>
   </body>
 </html>
