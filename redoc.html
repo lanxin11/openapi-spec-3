@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>API Reference</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="redoc_container" />
+    <script src="https://www.zuora.com/wp-content/themes/zuora/js/redocpro-standalone.min.js"></script>
+    <script>
+      RedocPro.init(
+        'bundled/openapi.yaml',
+        {
+          "unstable_ignoreMimeParameters": true,
+          "lazyRendering": true
+        },
+        document.querySelector('#redoc_container')
+      );
+    </script>
+  </body>
+</html>
